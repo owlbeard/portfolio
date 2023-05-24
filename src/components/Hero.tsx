@@ -17,16 +17,16 @@ export default function Hero() {
         Frontend Web Developer
       </h2>
       <img
-        className="2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm rounded-full hover:rotate-180 transition-transform"
+        className="rotating 2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm rounded-full transition-transform"
         src={HeroImage}
-        alt="Tech stack"
+        alt="Dev_Sharp"
       />
-      <p className="text-2xl">
+      <p className="text-2xl flex flex-wrap justify-center items-center gap-2">
         <span>Check out some of my </span>
         <Link to="/projects">
           <button
             id="project"
-            className="p-2 rounded-lg bg-teal-400 text-white"
+            className="p-2 rounded-lg bg-teal-400 text-white hover:scale-110 transition-transform"
           >
             Projects
           </button>

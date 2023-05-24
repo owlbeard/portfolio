@@ -3,7 +3,12 @@ export default {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        dvh: '100dvh',
+        svh: '100svh',
+      },
+    },
   },
   plugins: [],
 };
