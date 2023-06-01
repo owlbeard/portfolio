@@ -1,6 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import HeroImage from '../assets/theChef.jpg';
+import HeroImage from '../assets/omar.jpeg';
 
 export default function Hero() {
   return (
@@ -28,24 +28,22 @@ export default function Hero() {
           Frontend Web Developer
         </m.h2>
       </div>
-      <m.div
-        animate={{ x: 0 }}
-        initial={{ x: '-200%' }}
-        transition={{ duration: 5 }}
-      >
-        <img
-          id="spin"
-          className="2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm rounded-full transition-transform"
+      <div className="overflow-hidden">
+        <m.img
+          animate={{ y: 0 }}
+          initial={{ y: '-100%' }}
+          transition={{ delay: 0.5, duration: 2.5 }}
+          className="2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm max-h-96 rounded-fifty transition-transform"
           src={HeroImage}
           alt="Dev_Sharp"
         />
-      </m.div>
+      </div>
       <div className="overflow-hidden p-2">
         <m.p
           className="text-2xl flex flex-wrap justify-center items-center gap-2"
           animate={{ y: 0 }}
           initial={{ y: '175%' }}
-          transition={{ delay: 5.2 }}
+          transition={{ delay: 3 }}
         >
           <span>Check out some of my </span>
           <Link to="/projects">

@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+// @ts-nocheck
+import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Bars from '../assets/bars.png';
-
+import { motion as m } from 'framer-motion';
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [nav, setNav] = useState(false);
-
+  const navRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
@@ -17,7 +18,26 @@ export default function Header() {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
-
+  useEffect(() => {
+    const main = document.querySelector('.main');
+    main!.addEventListener('click', (e) => {
+      handleClick(e);
+    });
+  }, [nav]);
+  const handleClick = (e: MouseEvent) => {
+    const navElement = navRef.current;
+    if (nav === true && navElement) {
+      const dialogDimensions = navElement.getBoundingClientRect();
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        setNav(false);
+      }
+    }
+  };
   const open = function () {
     setNav(!nav);
   };
@@ -73,7 +93,13 @@ export default function Header() {
       >
         Home
       </NavLink>
-      <div className="flex flex-col gap-4 justify-start items-end absolute top-0 right-0 pr-2 pt-4 h-screen w-52 bg-gray-800 z-10">
+      <m.div
+        ref={navRef}
+        animate={{ x: 0 }}
+        initial={{ x: '200%' }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col gap-4 justify-start items-end absolute top-0 right-0 pr-2 pt-4 h-screen w-52 bg-gray-800 z-10"
+      >
         <button onClick={open}>
           <img className="h-12" src={Bars} alt="navbar" />
         </button>
@@ -98,7 +124,7 @@ export default function Header() {
         >
           Contact
         </NavLink>
-      </div>
+      </m.div>
     </nav>
   );
 }

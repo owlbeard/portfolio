@@ -11,6 +11,9 @@ export default {
         dvh: '100dvh',
         svh: '100svh',
       },
+      borderRadius: {
+        fifty: '50%',
+      },
     },
   },
   plugins: [],
