@@ -30,9 +30,9 @@ export default function Hero() {
       </div>
       <div className="overflow-hidden">
         <m.img
-          animate={{ y: 0 }}
-          initial={{ y: '-100%' }}
-          transition={{ delay: 0.5, duration: 2.5 }}
+          animate={{ opacity: '100%' }}
+          initial={{ opacity: '0%' }}
+          transition={{ delay: 0.5, duration: 1 }}
           className="2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm max-h-96 rounded-fifty transition-transform"
           src={HeroImage}
           alt="Dev_Sharp"
@@ -43,7 +43,7 @@ export default function Hero() {
           className="text-2xl flex flex-wrap justify-center items-center gap-2"
           animate={{ y: 0 }}
           initial={{ y: '175%' }}
-          transition={{ delay: 3 }}
+          transition={{ delay: 1 }}
         >
           <span>Check out some of my </span>
           <Link to="/projects">
