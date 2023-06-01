@@ -26,8 +26,7 @@ export default function Projects() {
           <p>
             Simple todo list app where you can create edit and delete tasks,
             create edit or delete projects add tasks to the projects etc.
-            Created with vanilla JS, HTML and CSS. Bundled with WebPack, several
-            npm packages were used.
+            Created with vanilla JavaScript, HTML and CSS. Bundled with WebPack.
           </p>
         </div>
         <div className="flex flex-col gap-4">
@@ -40,7 +39,8 @@ export default function Projects() {
           <p>
             A shopping cart app where you can add any amount of items to your
             cart, you can also remove items or add more items in the checkout
-            page. Created with HTML, CSS, JS, React.
+            page. Created with HTML, Tailwind CSS, JS, ReactJS. Bundled with
+            Vite.
           </p>
         </div>
         <div className="flex flex-col gap-4">
@@ -54,8 +54,9 @@ export default function Projects() {
             Weather app that fetches data from WeatherAPI asynchronously to get
             weather data of any city the user searched in the search bar.
             Depending on the state of the weather of selected city, background
-            will change accordingly! Created with vanilla JS, HTML and CSS.
-            Bundled with WebPack.
+            will change accordingly! Created with HTML, plain CSS & Tailwind CSS
+            and ReactJS. JavaScript code is written in TypeScript and bundled
+            with Vite.
           </p>
         </div>
       </div>
