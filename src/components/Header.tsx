@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Bars from '../assets/bars.png';
@@ -20,9 +19,7 @@ export default function Header() {
   }, []);
   useEffect(() => {
     const main = document.querySelector('.main');
-    main!.addEventListener('click', (e) => {
-      handleClick(e);
-    });
+    main!.addEventListener('click', (e: any) => handleClick(e));
   }, [nav]);
   const handleClick = (e: MouseEvent) => {
     const navElement = navRef.current;
