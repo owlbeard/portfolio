@@ -11,16 +11,19 @@ export default function Hero() {
       className="flex flex-col items-center"
     >
       <div className="p-2 overflow-hidden text-center">
+        <p className="2xl:text-4xl xl:text-2xl l:text-2xl md:text-2xl sm:text-2xl text-xl ">
+          Hello, I'm
+        </p>
         <m.h1
-          className="2xl:text-8xl xl:text-6xl l:text-6xl md:text-6xl sm:text-6xl text-3xl"
+          className="2xl:text-8xl xl:text-6xl l:text-6xl md:text-6xl sm:text-6xl text-3xl text-blue-500"
           animate={{ y: 0 }}
           initial={{ y: '100%' }}
           transition={{ duration: 0.7 }}
         >
-          Ömer Faruk Altun
+          Ömer F. Altun
         </m.h1>
         <m.h2
-          className="2xl:text-6xl xl:text-4xl l:text-4xl md:text-4xl sm:text-4xl text-xl"
+          className="2xl:text-4xl xl:text-2xl l:text-2xl md:text-2xl sm:text-2xl text-xl"
           animate={{ y: 0 }}
           initial={{ y: '100%' }}
           transition={{ duration: 0.7 }}
@@ -28,12 +31,12 @@ export default function Hero() {
           Frontend Web Developer
         </m.h2>
       </div>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden ">
         <m.img
           animate={{ opacity: '100%' }}
           initial={{ opacity: '0%' }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm max-h-96 rounded-fifty transition-transform"
+          className="h-48 w-48 2xl:max-w-md xl:max-w-md lg:max-w-sm md:max-w-sm sm:max-w-sm max-h-96 rounded-fifty transition-transform"
           src={HeroImage}
           alt="Dev_Sharp"
         />
