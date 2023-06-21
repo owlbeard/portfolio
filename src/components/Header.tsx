@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Bars from '../assets/bars.png';
-import { motion as m } from 'framer-motion';
+import { AnimatePresence, motion as m } from 'framer-motion';
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [nav, setNav] = useState(false);
@@ -32,14 +31,17 @@ export default function Header() {
         e.clientY > dialogDimensions.bottom
       ) {
         setNav(false);
+        document.body.classList.remove('stopScroll');
       }
     }
   };
   const open = function () {
+    if (nav) document.body.classList.remove('stopScroll');
+    else document.body.classList.add('stopScroll');
     setNav(!nav);
   };
 
-  return windowWidth >= 640 ? (
+  return (
     <nav className="container flex justify-between gap-4 text-xl pt-4">
       <NavLink
         to="/"
@@ -48,80 +50,99 @@ export default function Header() {
         Home
       </NavLink>
 
-      <NavLink
-        to="/about"
-        className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-orange-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-      >
-        About
-      </NavLink>
+      {windowWidth >= 640 ? (
+        <>
+          <NavLink
+            to="/about"
+            className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-orange-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+          >
+            About
+          </NavLink>
 
-      <NavLink
-        to="/projects"
-        className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-teal-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-      >
-        Projects
-      </NavLink>
+          <NavLink
+            to="/projects"
+            className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-teal-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+          >
+            Projects
+          </NavLink>
 
-      <NavLink
-        to="/contact"
-        className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-red-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-      >
-        Contact
-      </NavLink>
-    </nav>
-  ) : !nav ? (
-    <nav className="container flex justify-between items-start gap-4 text-xl pt-4">
-      <NavLink
-        to="/"
-        className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-blue-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-      >
-        Home
-      </NavLink>
-      <button onClick={open}>
-        <img className="h-12" src={Bars} alt="navbar" />
-      </button>
-    </nav>
-  ) : (
-    <nav className="container flex justify-between items-start gap-4 text-xl pt-4 relative">
-      <NavLink
-        to="/"
-        className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-blue-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-        onClick={open}
-      >
-        Home
-      </NavLink>
-      <m.div
-        ref={navRef}
-        animate={{ x: 0 }}
-        initial={{ x: '200%' }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col gap-4 justify-start items-end absolute top-0 right-0 pr-2 pt-4 h-screen w-52 bg-gray-800 z-10"
-      >
-        <button onClick={open}>
-          <img className="h-12" src={Bars} alt="navbar" />
-        </button>
-        <NavLink
-          to="/about"
-          className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-orange-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-          onClick={open}
+          <NavLink
+            to="/contact"
+            className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-red-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+          >
+            Contact
+          </NavLink>
+        </>
+      ) : (
+        <div
+          onClick={() => {
+            open();
+            document.body.classList.add('stopScroll');
+          }}
+          className="space-y-1.5 cursor-pointer pt-3 z-50"
         >
-          About
-        </NavLink>
-        <NavLink
-          to="/projects"
-          className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-teal-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-          onClick={open}
-        >
-          Projects
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-red-500 hover:-translate-y-1 hover:scale-110 transition-transform"
-          onClick={open}
-        >
-          Contact
-        </NavLink>
-      </m.div>
+          <m.span
+            animate={{ rotateZ: nav ? 45 : 0, y: nav ? 8 : 0 }}
+            className="block h-0.5 w-8 bg-white"
+          ></m.span>
+          <m.span
+            animate={{ width: nav ? 0 : 24 }}
+            className="block h-0.5 w-6 bg-white"
+          ></m.span>
+          <m.span
+            animate={{
+              rotateZ: nav ? -45 : 0,
+              y: nav ? -8 : 0,
+              width: nav ? 32 : 16,
+            }}
+            className="block h-0.5 w-4 bg-white"
+          ></m.span>
+        </div>
+      )}
+      <AnimatePresence>
+        {nav && (
+          <div className=" main fixed left-0 right-0 top-0 bottom-0 z-10 flex justify-end bg-black bg-opacity-50">
+            <m.div
+              ref={navRef}
+              animate={{ x: 0 }}
+              initial={{ x: '100%' }}
+              exit={{ x: '100%' }}
+              className="flex flex-col gap-4 justify-start items-end mt-16 h-screen w-52 bg-gray-800 z-10"
+            >
+              <NavLink
+                to="/about"
+                className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-orange-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+                onClick={() => {
+                  open();
+                  document.body.classList.remove('stopScroll');
+                }}
+              >
+                About
+              </NavLink>
+              <NavLink
+                to="/projects"
+                className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-teal-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+                onClick={() => {
+                  open();
+                  document.body.classList.remove('stopScroll');
+                }}
+              >
+                Projects
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="px-7 py-2 border-b-4 border-b-transparent hover:border-b-red-500 hover:-translate-y-1 hover:scale-110 transition-transform"
+                onClick={() => {
+                  open();
+                  document.body.classList.remove('stopScroll');
+                }}
+              >
+                Contact
+              </NavLink>
+            </m.div>
+          </div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

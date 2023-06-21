@@ -1,6 +1,6 @@
 import { motion as m } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import HeroImage from '../assets/omar.jpeg';
+import HeroImage from '../assets/omar.webp';
 
 export default function Hero() {
   return (
@@ -52,7 +52,7 @@ export default function Hero() {
           <Link to="/projects">
             <button
               id="project"
-              className="p-2 rounded-lg bg-teal-400 text-white hover:scale-110 transition-transform"
+              className="p-2 rounded-lg bg-teal-400 text-white hover:scale-110 hover:bg-teal-500 transition-transform"
             >
               Projects
             </button>
