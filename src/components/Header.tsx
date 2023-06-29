@@ -107,7 +107,7 @@ export default function Header() {
               animate={{ x: 0 }}
               initial={{ x: '100%' }}
               exit={{ x: '100%' }}
-              className="flex flex-col gap-4 justify-start items-end mt-16 h-screen w-52 bg-gray-800 z-10"
+              className="flex flex-col gap-4 justify-start items-end pt-16 h-screen w-52 bg-gray-800 z-10"
             >
               <NavLink
                 to="/about"
