@@ -1,5 +1,4 @@
 import { motion as m } from 'framer-motion';
-import { useMediaQuery } from '../util/useMediaQuery';
 
 const projects = Object.values(
   import.meta.glob('../assets/projects/*.{png,jpg,jpeg,PNG,JPEG}', {
@@ -9,7 +8,6 @@ const projects = Object.values(
 );
 
 export default function Projects() {
-  const matches = useMediaQuery('(min-width: 1536px)');
   return (
     <m.div
       initial={{ opacity: 0 }}
